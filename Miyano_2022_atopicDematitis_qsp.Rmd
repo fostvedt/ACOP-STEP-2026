@@ -1073,12 +1073,14 @@ easi75_matched_compare <- dplyr::bind_rows(
   easi75_from_matched(fixed_matched_sim, "Fixed inhibition (r_il4 = r_il13 = 0.99)")
 )
 
-ggplot(easi75_matched_compare, aes(x = time, y = EASI75, colour = mechanism)) +
+p <- ggplot(easi75_matched_compare, aes(x = time, y = EASI75, colour = mechanism)) +
   geom_line(linewidth = 0.9) +
   labs(x = "Time on treatment (weeks)", y = "EASI-75 responder rate (%)",
        colour = NULL,
        title = "Fixed inhibition vs. PK-driven inhibition, same virtual patients, matched 300 mg dose",
        caption = "Both mechanisms reuse vpop_roster's QSP etas -- only the drug-effect mechanism differs.")
+p
+ggsave("PK-vs-fixed-inhibition-projections.pdf",plot=p)
 
 get_val_m <- function(df, wk, mech) round(df$EASI75[df$time == wk & df$mechanism == mech], 0)
 cat("Week 2  -- PK-driven:", get_val_m(easi75_matched_compare, 2, "PK-driven (300 mg q2w)"),
