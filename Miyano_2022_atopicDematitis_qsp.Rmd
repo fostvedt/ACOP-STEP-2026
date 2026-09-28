@@ -26,7 +26,7 @@ library(ggplot2)
 library(tibble)
 library(purrr)
 library(MASS)
-show_answers <- FALSE
+show_answers <- TRUE
 ```
 
 This document can be rendered in two modes. The default (`params$answers = FALSE`) shows only the exercise prompts. Rendering with `rmarkdown::render("Miyano_2022_atopicDermatitis_qsp.Rmd", params = list(answers = TRUE))` additionally reveals a worked "Suggested answer" after each exercise.
