@@ -31,6 +31,8 @@ library(ggplot2)
 
 set.seed(8214)
 
+moddir <- "/Users/lukefostvedt/Documents/ACOP-STEP-2026/dupilumab-poppk/"
+
 ## Output directory for saved plots (created if it doesn't exist)
 fig_dir <- "figures"
 if (!dir.exists(fig_dir)) dir.create(fig_dir)
@@ -38,9 +40,9 @@ if (!dir.exists(fig_dir)) dir.create(fig_dir)
 ## -----------------------------------------------------------------------
 ## 1. Load models (nlmixr2/rxode2 and mrgsolve, for the parity check below)
 ## -----------------------------------------------------------------------
-source("dupilumab_asthma_poppk_nlmixr2.R")
+source(paste0(moddir,"dupilumab_asthma_poppk_nlmixr2.R"))
 mod_nlmixr <- dupilumab_asthma_poppk()
-mod_mrgsolve <- mread("dupilumab_asthma_poppk.cpp")
+mod_mrgsolve <- mread(paste0(moddir,"dupilumab_asthma_poppk.cpp"))
 
 ## Parity-only mrgsolve variant: identical structural/covariate model, but
 ## etas are declared as plain $PARAM inputs (not $OMEGA-simulated), so
@@ -48,7 +50,7 @@ mod_mrgsolve <- mread("dupilumab_asthma_poppk.cpp")
 ## an apples-to-apples comparison against nlmixr2/rxode2 (mrgsolve's
 ## $OMEGA-declared etas cannot be overridden by input data columns; they are
 ## always resimulated internally per ID). See dupilumab_asthma_poppk_parity.cpp.
-mod_mrgsolve_parity <- mread("dupilumab_asthma_poppk_parity.cpp")
+mod_mrgsolve_parity <- mread(paste0(moddir,"dupilumab_asthma_poppk_parity.cpp"))
 
 ## Fixed-effect (theta) vector at the literature values (must be supplied
 ## explicitly to rxSolve alongside covariates/etas; unlike mrgsolve, thetas
