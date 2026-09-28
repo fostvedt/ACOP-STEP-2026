@@ -685,6 +685,7 @@ pk_sim <- rxSolve(
   pk_dupi,
   events = data_in,
   params = theta_vals,
+  omega  = pk_dupi$omega,
   covsInterpolation = "locf"
 ) |>
   as_tibble() |>
