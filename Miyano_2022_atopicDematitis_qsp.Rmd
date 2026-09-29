@@ -552,7 +552,7 @@ pk_dupi
 ```
 
 ```{r dupi-PK-asthma-model}
-moddir <- "/Users/lukefostvedt/Documents/ACOP-STEP-2026/dupilumab-poppk/"
+moddir <- paste(getwd(),"dupilumab-poppk/",sep="/")
 source(paste0(moddir,"dupilumab_asthma_poppk_nlmixr2.R"))
 
 pk_dupi <- rxode2::rxode2(dupilumab_asthma_poppk())
