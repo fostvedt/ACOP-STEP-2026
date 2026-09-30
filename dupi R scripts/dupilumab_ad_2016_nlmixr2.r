@@ -47,4 +47,3 @@ dupilumab_pk <- function() {
   })
 }
 
-mod <- nlmixr2(dupilumab_pk)
